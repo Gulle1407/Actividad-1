@@ -144,6 +144,8 @@ def processRounds(rounds):
                 puntosAct[playerAct]+=puntuaciones[i]*value
                 i+=1
             roundImprimir[playerAct]['Puntos']+=puntosAct[playerAct]
-        roundImprimir[getMVP(puntosAct)]['MVPs']+=1
+        mvpAct=getMVP(puntosAct)
+        roundImprimir[mvpAct]['MVPs']+=1
         roundImprimir=sortRound(roundImprimir)
         printRound(roundImprimir,nRound)
+        print("\n El MVP de esta ronda es ",mvpAct)
