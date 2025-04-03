@@ -20,7 +20,7 @@ def searchLargestStr(titles):
 
 def checkUsserName(nombre):
     """
-    Recibe, un string y verifica que cumpla los criterios 
+    Recibe, un string y verifica que cumpla los criterios b
     de un nombre de usuario.
     Asume que se lee una entrada del teclado
     """
