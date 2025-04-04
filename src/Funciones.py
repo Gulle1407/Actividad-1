@@ -123,20 +123,29 @@ def sortRound(round):
     sorted_dict = {x: round[x] for x in sortedKeys}
     return sorted_dict
 
+def generateRound(rounds):
+    emptyValues={'kills': 0, 'assists': 0, 'deaths':0,'MVPs':0,'Puntos':0}
+    emptyRound={}
+    firstRound=rounds[0]  #Retorna el primer elemento del diccionario
+    for key in firstRound:  #accedo a las keys (los nombres de los players)
+        emptyRound[key]=emptyValues.copy()  #Añada cada key relacionada a una ronda de valores vacias usando copy pa q no referencien todos al mismo
+    return emptyRound
+
+def generatePoints(round):
+    emptyPoints={}
+    for key in round:  #accedo a las keys (los nombres de los players)
+        emptyPoints[key]=0 
+    return emptyPoints
+
+
 def processRounds(rounds):
 
-    roundImprimir={
-    'Shadow':{'kills': 0, 'assists': 0, 'deaths':0,'MVPs':0,'Puntos':0},
-    'Blaze':{'kills': 0, 'assists': 0, 'deaths':0,'MVPs':0,'Puntos':0},
-    'Viper':{'kills': 0, 'assists': 0, 'deaths':0,'MVPs':0,'Puntos':0},
-    'Frost':{'kills': 0, 'assists': 0, 'deaths':0,'MVPs':0,'Puntos':0},
-    'Reaper':{'kills': 0, 'assists': 0, 'deaths':0,'MVPs':0,'Puntos':0},
-    }
-    
+    roundImprimir=generateRound(rounds) #Una ronda con los valores inicializados en 0
+    emptyPoints=generatePoints(roundImprimir) #{'Shadow':0,'Blaze':0,'Viper':0,'Frost':0,'Reaper':0,}
     
     puntuaciones=[3,1,-1]
     for nRound,roundAct in enumerate(rounds,start=1):
-        puntosAct={'Shadow':0,'Blaze':0,'Viper':0,'Frost':0,'Reaper':0,}
+        puntosAct=emptyPoints.copy()
         for playerAct in roundAct:
             i=0
             for key,value in roundAct[playerAct].items():
@@ -149,3 +158,4 @@ def processRounds(rounds):
         roundImprimir=sortRound(roundImprimir)
         printRound(roundImprimir,nRound)
         print("\n El MVP de esta ronda es ",mvpAct)
+
