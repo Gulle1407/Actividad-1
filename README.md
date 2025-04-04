@@ -18,4 +18,4 @@ Una vez posicionados en la carpeta de nuestro proyecto, podremos ejecutar el com
 
 ```bash
 jupyter notebook
-```<
+```
