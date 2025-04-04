@@ -82,8 +82,8 @@ def replaceAccent(word):
         word=word.replace(acc,nor)  #reemplaza todas las vocales acentuadas por su contraparte normal 
     return word
 
-def printRound(round,n):
-    if(n<5):
+def printRound(round,n,ln):
+    if(n<ln):
         print("\n Ronda: "+str(n)+"\n")
     else:
         print("\n Ronda Final: \n")
@@ -139,12 +139,16 @@ def generatePoints(round):
 
 
 def processRounds(rounds):
-
+    if len(rounds)==0: #Se asegura de no haber recibido una lista vacia
+        exit(1)
     roundImprimir=generateRound(rounds) #Una ronda con los valores inicializados en 0
     emptyPoints=generatePoints(roundImprimir) #{'Shadow':0,'Blaze':0,'Viper':0,'Frost':0,'Reaper':0,}
     
     puntuaciones=[3,1,-1]
-    for nRound,roundAct in enumerate(rounds,start=1):
+
+    enumerated=enumerate(rounds,start=1)
+
+    for nRound,roundAct in enumerated:
         puntosAct=emptyPoints.copy()
         for playerAct in roundAct:
             i=0
@@ -156,6 +160,6 @@ def processRounds(rounds):
         mvpAct=getMVP(puntosAct)
         roundImprimir[mvpAct]['MVPs']+=1
         roundImprimir=sortRound(roundImprimir)
-        printRound(roundImprimir,nRound)
+        printRound(roundImprimir,nRound,len(rounds))
         print("\n El MVP de esta ronda es ",mvpAct)
 
