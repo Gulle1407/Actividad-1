@@ -110,7 +110,6 @@ def getMVP(data):
     return maxPlayer
 
 
-
 def sortRound(round):
     """
     Recibe un diccionario de la ronda y devuelve una copia ordenada
@@ -120,8 +119,8 @@ def sortRound(round):
         for j in range(i + 1, len(sortedKeys)):
             if round[sortedKeys[i]]['Puntos'] < round[sortedKeys[j]]['Puntos']:
                 sortedKeys[i], sortedKeys[j] = sortedKeys[j], sortedKeys[i]
-    sorted_dict = {x: round[x] for x in sortedKeys}
-    return sorted_dict
+    sortedDict = {x: round[x] for x in sortedKeys}
+    return sortedDict
 
 def generateRound(rounds):
     emptyValues={'kills': 0, 'assists': 0, 'deaths':0,'MVPs':0,'Puntos':0}
@@ -134,7 +133,7 @@ def generateRound(rounds):
 def generatePoints(round):
     emptyPoints={}
     for key in round:  #accedo a las keys (los nombres de los players)
-        emptyPoints[key]=0 
+        emptyPoints[key]=0
     return emptyPoints
 
 
@@ -147,12 +146,11 @@ def processRounds(rounds):
     puntuaciones=[3,1,-1]
 
     enumerated=enumerate(rounds,start=1)
-
     for nRound,roundAct in enumerated:
-        puntosAct=emptyPoints.copy()
-        for playerAct in roundAct:
+        puntosAct=emptyPoints.copy()    #los puntos que vamos a asociar a la ronda
+        for playerAct in roundAct:      #recorremos el jugador actual en la ronda actual
             i=0
-            for key,value in roundAct[playerAct].items():
+            for key,value in roundAct[playerAct].items():   #recorremos las estadisticas del jugador
                 roundImprimir[playerAct][key]+=value
                 puntosAct[playerAct]+=puntuaciones[i]*value
                 i+=1
